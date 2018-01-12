@@ -144,21 +144,11 @@ class App extends React.Component {
     console.log(this.state.selectedTopic);
     return (
       <div>
-<<<<<<< HEAD
         <NavBar history={this.props.history} home={this.getAllTopics} createNewTopic={this.createNewTopic}/>
         <Switch>
           <Route path='/share' render={(props) => (
             <Container>
-              <NewTopic {...props}
-=======
-        <NavBar home={this.getAllTopics} createNewTopic={this.createNewTopic}/>
-        <Container>
-          <Switch>
-            <Route path='/share' render={(props) => {
-
-              return (<NewTopic
-                {...props}
->>>>>>> fb auth server
+              <NewTopic {...props}       
                 onNewTopic={this.onNewTopic}
                 active={this.state.displayNewTopic}
                 closeNewTopic={this.closeNewTopic}
