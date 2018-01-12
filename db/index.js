@@ -13,11 +13,30 @@ let topicSchema = db.Schema({
 
 });
 
+// let userSchema = db.Schema({
+//   facebookId: String
+// })
+// let user = {
+//   _id: '3452352453434',
+//   username: 'Bob',
+//   email: 'bob@meail.com',
+//   facebookId: ''
+// };
+//TODO: Remove this when implementing User DB
+// let User = {
+//   findOrCreate: function(data, cb) {
+//     user.facebookId = data.facebookId;
+//     cb(null, user);
+//   }
+//   // user: user
+// }
+
 let Topic = db.model('Topic', topicSchema);
 //let Comment = db.model('Comment, commentSchema);
 //let List = db.model('List, listchema);
 //let User = db.model('User', userSchema);
 //let Organization = db.model('Organization', sessionSchema);
+
 
 let getTopics = (callback) => {
 
@@ -97,6 +116,7 @@ module.exports.getTopics = getTopics;
 module.exports.updateVoteCount = updateVoteCount;
 module.exports.getSelectTopics = getSelectTopics;
 module.exports.getTopicById = getTopicById;
+// module.exports.User = User;
 // module.exports.users = User;
 // module.exports.comments = Comment;
 // module.exports.lists = List;

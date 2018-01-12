@@ -7,7 +7,6 @@ import NavBar from './NavBar.jsx';
 import UtilsBar from './UtilsBar.jsx';
 import TopicListDetailed from './TopicDetailed.jsx';
 import http from 'axios';
-import FbAuth from './FbAuthButton.jsx';
 
 import {Link, Redirect, BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Button, Container, Header} from 'semantic-ui-react';
@@ -153,7 +152,6 @@ class App extends React.Component {
               <NewTopic {...props}
 =======
         <NavBar home={this.getAllTopics} createNewTopic={this.createNewTopic}/>
-        <FbAuth />
         <Container>
           <Switch>
             <Route path='/share' render={(props) => {

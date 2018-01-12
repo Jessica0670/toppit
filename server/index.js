@@ -12,6 +12,23 @@ const Auth = require('../config/tokens.js')
 // var FacebookStrategy = require('passport-facebook').Strategy;
 
 
+const User = require('../db').User;
+const Auth = require('../config/tokens.js')
+// var passport = require('passport');
+// var FacebookStrategy = require('passport-facebook').Strategy;
+
+
+// passport.serializeUser((user, done) => {
+//   console.log(user, 'user')
+//   done(null, user._id);
+// })
+
+// passport.deserializeUser(function(id, done) {
+//     done(err, User.user);
+// });
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use(morgan('tiny'));
 app.use(express.json());
@@ -21,44 +38,49 @@ app.use('/topic/:topicId', express.static(path.join(__dirname, '../client/dist')
 // Handle internal API endpoints
 app.use('/api', api);
 
-//fb auth
-passport.use(new FacebookStrategy({
-      clientID: Auth.keys.secret,
-      clientSecret: Auth.keys.secret,
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
-app.get('/auth/facebook',
-  passport.authenticate('facebook'));
+// //fb auth
+// passport.use(new FacebookStrategy({
+//       clientID: Auth.id,
+//       clientSecret: Auth.secret,
+//       callbackURL: "http://localhost:3000/auth/facebook/callback"
+//       // ,
+//       // profileURL: 'https://graph.facebook.com/v2.8/me',
+//       // authorizationURL: 'https://www.facebook.com/v2.8/dialog/oauth',
+//       // tokenURL: 'https://graph.facebook.com/v2.8/oauth/access_token'
+//   },
+//   function(accessToken, refreshToken, profile, cb) {
+//     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+//       return cb(err, user);
+//     });
+//   }
+// ));
 
-app.get('/auth/facebook/callback',
+// app.get('/auth/facebook',
+//   passport.authenticate('facebook'));
 
-  //change failure to login page when created//
+// app.get('/auth/facebook/callback',
 
-  passport.authenticate('facebook', 
-    { failureRedirect: '/' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/login');
-});
-/////////////
+//   //change failure to login page when created//
 
-// GET all topics from the server
-app.get('/topics', (req, res) => {
-  db.getTopics((error, result) => {
-    if (error) {
-      res.status(503).end();
-      console.log(error.message);
-      return;
-    }
-    res.status(200).send(result);
-  });
-});
+//   passport.authenticate('facebook', 
+//     { failureRedirect: '/' }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/login');
+// });
+// /////////////
+
+// // GET all topics from the server
+// app.get('/topics', (req, res) => {
+//   db.getTopics((error, result) => {
+//     if (error) {
+//       res.status(503).end();
+//       console.log(error.message);
+//       return;
+//     }
+//     res.status(200).send(result);
+//   });
+// });
 
 // GET all topics from the server
 app.post('/topic', (req, res) => {

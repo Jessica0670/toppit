@@ -6,6 +6,7 @@ const Login = () => (
     <Button href='/' primary fluid>Login</Button>
     <Divider horizontal>Or</Divider>
     <Button secondary fluid>Sign Up Now</Button>
+    <Button href='/auth/facebook' secondary fluid>Sign In with Facebook</Button>
   </Segment>
 );
 
